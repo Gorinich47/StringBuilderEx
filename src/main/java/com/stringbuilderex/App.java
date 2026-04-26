@@ -11,11 +11,11 @@ public class App
 {
     public static void main( String[] args )
     {
-        StringBuilderEx sbx = new StringBuilderEx(10);
+        StringBuilderEx sbx = new StringBuilderEx(5);
         sbx.append("один;");
         sbx.append("два;");
         sbx.append("три;");
-        sbx.append("один;");
+        sbx.append("четыре;");
         System.out.println(sbx.toString() + "\n" );
         sbx.undo();
         System.out.println(sbx.toString() + "\n" );

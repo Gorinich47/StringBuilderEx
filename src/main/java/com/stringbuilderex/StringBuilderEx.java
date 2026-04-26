@@ -11,8 +11,8 @@ public class StringBuilderEx {
     /*
      Конструктор с параметром - размер истории
      */
-    StringBuilderEx(int capacity){
-         this.history = new StringBuilderHistory<>(capacity);
+    StringBuilderEx(int sizeHistory){
+         this.history = new StringBuilderHistory<>(sizeHistory);
     }
     /*
       Дефолтовый конструкор, размер истории будет 2
@@ -32,7 +32,7 @@ public class StringBuilderEx {
         }
 
         // есть история и есть снимок
-        StringBuilderSnapshot snapshot = history.undo();
+        StringBuilderSnapshot<String> snapshot = history.undo();
         if(history!=null){
             this.sbuilder = new StringBuilder(snapshot.getState());
         }
@@ -58,7 +58,7 @@ public class StringBuilderEx {
      * @return текущий экземпляр {@link StringBuilderEx}.
      */
     private <T> StringBuilderEx appendGeneric(T value) {
-        history.save(new StringBuilderSnapshot(sbuilder.toString()));
+        history.save(new StringBuilderSnapshot<>(sbuilder.toString()));
         sbuilder.append(value);
         return this;
     }
@@ -78,7 +78,7 @@ public class StringBuilderEx {
      * @return текущий экземпляр {@link StringBuilderEx}.
      */
     <T> StringBuilderEx insertGeneric(int offset , T value){
-        history.save(new StringBuilderSnapshot(sbuilder.toString()));
+        history.save(new StringBuilderSnapshot<>(sbuilder.toString()));
         sbuilder.insert(offset, value);
         return this;
     }
@@ -86,24 +86,24 @@ public class StringBuilderEx {
     // Остальные без перегрузок
 
     StringBuilderEx delete(int start, int end) {
-        history.save(new StringBuilderSnapshot(sbuilder.toString()));
+        history.save(new StringBuilderSnapshot<>(sbuilder.toString()));
         sbuilder.delete(start, end);
         return this;
     }
 
     StringBuilderEx deleteCharAt(int index) {
-        history.save(new StringBuilderSnapshot(sbuilder.toString()));
+        history.save(new StringBuilderSnapshot<>(sbuilder.toString()));
         sbuilder.deleteCharAt(index);
         return this;
     }
 
     StringBuilderEx replace(int start, int end, String str) {
-        history.save(new StringBuilderSnapshot(sbuilder.toString()));
+        history.save(new StringBuilderSnapshot<>(sbuilder.toString()));
         sbuilder.replace(start, end, str);
         return this;
     }
     StringBuilderEx reverse() {
-        history.save(new StringBuilderSnapshot(sbuilder.toString()));
+        history.save(new StringBuilderSnapshot<>(sbuilder.toString()));
         sbuilder.reverse();
         return this;
     }
