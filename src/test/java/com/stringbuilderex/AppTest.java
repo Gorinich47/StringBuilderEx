@@ -1,4 +1,4 @@
-package com.geometry;
+package com.stringbuilderex;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

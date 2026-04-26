@@ -1,14 +1,27 @@
 package com.stringbuilderex;
 
-public final class Snapshot {
+/**
+ * Снимок состояния (Memento).
+ * Хранит неизменяемую копию внутренних данных StringBuilder.
+ */
+public final class StringBuilderSnapshot {
     private final String state;
+    static final String EMPTY_STATE="";
 
-    private Snapshot(String state) {
+    /**
+     * @param state строковое представление состояния для сохранения.
+     */
+    StringBuilderSnapshot(String state) {
         this.state = state;
     }
 
-    // Доступ к состоянию только для владельца (StringBuilderEx)
-    private String getState() {
+    /**
+     * @return сохраненное состояние.
+     */
+    String getState() {
+        if(state==null){
+            return EMPTY_STATE;
+        }
         return state;
     }
 }
